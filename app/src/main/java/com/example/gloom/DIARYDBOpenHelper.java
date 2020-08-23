@@ -1,6 +1,8 @@
 package com.example.gloom;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -47,5 +49,22 @@ public class DIARYDBOpenHelper {
 
     public void close(){
         dDB.close();
+    }
+
+    public long insertColumn(String date, String content, int useridx){
+        ContentValues values = new ContentValues();
+        values.put(DIARY_DB.CreateDB.DATE, date);
+        values.put(DIARY_DB.CreateDB.CONTENT, content);
+        values.put(DIARY_DB.CreateDB.USER_IDX, useridx);
+        return dDB.insert(DIARY_DB.CreateDB._TABLENAME0, null, values);
+    }
+
+    public Cursor selectColumns(){
+        return dDB.query(DIARY_DB.CreateDB._TABLENAME0, null, null, null, null, null, null);
+    }
+
+    public Cursor sortColumn(String sort){
+        Cursor c = dDB.rawQuery( "SELECT * FROM diarytable ORDER BY " + sort + ";", null);
+        return c;
     }
 }

@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat cFormat = new SimpleDateFormat("yyyyMd");
     String tday;
     String sday;
+
+    private USERDBOpenHelper uDbOpenHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

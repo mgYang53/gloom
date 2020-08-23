@@ -23,6 +23,8 @@ public class MenuActivity2 extends AppCompatActivity {
     Button bt;
     TextInputEditText diary;
 
+    private DIARYDBOpenHelper dDbOpenHelper;
+    private ANALYSISDBOpenHelper aDbOpenHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,10 @@ public class MenuActivity2 extends AppCompatActivity {
 
         diary = (TextInputEditText) findViewById(R.id.textInputEditText);
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        String msg = diary.getText().toString();
-//        DatabaseReference.
+        dDbOpenHelper = new DIARYDBOpenHelper(this);
+        dDbOpenHelper.open();
+        dDbOpenHelper.create();
+
 
 
     }

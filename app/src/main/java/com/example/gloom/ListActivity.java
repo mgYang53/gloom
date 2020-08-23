@@ -22,14 +22,10 @@ public class ListActivity extends AppCompatActivity {
     private TextView whenDate;
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy.MM.dd");
 
-    private final String db_Name = "gloomDB";
-    private final String user_tableName = "user_table";
-    private final String diary_tableName = "diary_table";
-    private final String analysis_tableName = "analysis_table";
-
-    SQLiteDatabase mainDB = null;
-
     ArrayList<String> list;
+
+    private DIARYDBOpenHelper dDbOpenHelper;
+    private ANALYSISDBOpenHelper aDbOpenHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

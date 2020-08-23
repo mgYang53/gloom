@@ -1,6 +1,8 @@
 package com.example.gloom;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -48,5 +50,29 @@ public class USERDBOpenHelper {
 
     public void close(){
         uDB.close();
+    }
+
+    public long insertColumn(String userid, String userpw, String tel , String email){
+        ContentValues values = new ContentValues();
+        values.put(USER_DB.CreateDB.USERID, userid);
+        values.put(USER_DB.CreateDB.USERPW, userpw);
+        values.put(USER_DB.CreateDB.TEL, tel);
+        values.put(USER_DB.CreateDB.EMAIL, email);
+        return uDB.insert(USER_DB.CreateDB._TABLENAME0, null, values);
+    }
+
+    public Cursor selectColumns(){
+        return uDB.query(USER_DB.CreateDB._TABLENAME0, null, null, null, null, null, null);
+    }
+
+    public Cursor sortColumn(String sort){
+        Cursor c = uDB.rawQuery( "SELECT * FROM usertable ORDER BY " + sort + ";", null);
+        return c;
+    }
+
+    public boolean updatePW(String userid, String userpw){
+        ContentValues values = new ContentValues();
+        values.put(USER_DB.CreateDB.USERPW, userpw);
+        return uDB.update(USER_DB.CreateDB._TABLENAME0, values, "user_id=" + userid, null) > 0;
     }
 }
